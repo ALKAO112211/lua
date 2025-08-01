@@ -24,7 +24,7 @@
                                                  discord.gg/G7zGxH27QE
 
 --]]
-
+--[[
 -- ====== إعدادات مباشرة هنا ======
 local licensedIPs = {
     "127.0.0.1",          -- محلي للاختبار
@@ -175,7 +175,7 @@ end)
 exports('isLicensed', function()
     return isIPLicensed(getServerIP())
 end)
-
+ --]]
     
 
 
