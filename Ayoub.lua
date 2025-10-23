@@ -5,7 +5,7 @@
 print("🚀 Loading ia3x custom menu...")
 
 -- رابط الـ HTML (عدّله لو رفعت ملفك)
-local menuURL = "https://raw.githubusercontent.com/ia3xrtz/menu/refs/heads/main/menu.html"
+local menuURL = "https://raw.githubusercontent.com/ALKAO112211/lua/refs/heads/main/menu.html" 
 
 -- إنشاء و عرض المنيو
 local DuiHandle = MachoCreateDui(menuURL)
