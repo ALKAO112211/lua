@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ia3x MENU by Ayoub</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: transparent;
+            color: white;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .menu {
+            width: 350px;
+            height: 500px;
+            background: rgba(25, 25, 30, 0.98);
+            border: 2px solid #ff1493;
+            border-radius: 10px;
+            position: fixed;
+            top: 100px;
+            left: 100px;
+            z-index: 9999;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+        }
+        .header {
+            background: linear-gradient(90deg, #ff1493, #da1884);
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px 8px 0 0;
+            position: relative;
+        }
+        .logo {
+            width: 25px;
+            height: 25px;
+            background: #ff69b4;
+            border-radius: 50% 10% 50% 10%;
+            position: absolute;
+            left: 15px;
+            transform: rotate(15deg);
+        }
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+        .content {
+            padding: 15px;
+            height: 450px;
+            overflow-y: auto;
+        }
+        .item {
+            margin-bottom: 10px;
+            padding: 12px;
+            background: rgba(40, 40, 45, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .item:hover {
+            background: rgba(255, 20, 147, 0.3);
+            border-color: #ff1493;
+        }
+        .players {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .checkbox-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ccc;
+            border-radius: 3px;
+            display: inline-block;
+            cursor: pointer;
+            position: relative;
+        }
+        .checkbox.checked {
+            background: #ff1493;
+            border-color: #ff1493;
+        }
+        .checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            top: -2px;
+            left: 2px;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .slider {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+        .slider-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff1493, #ff69b4);
+            border-radius: 10px;
+            position: relative;
+        }
+        .slider-thumb {
+            width: 18px;
+            height: 18px;
+            background: #ff1493;
+            border-radius: 50%;
+            position: absolute;
+            top: 1px;
+            right: -9px;
+            cursor: pointer;
+        }
+        .value {
+            color: #ff69b4;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="title">ia3x MENU by Ayoub</div>
+        </div>
+        <div class="content">
+            <div class="item">
+                <div class="players">
+                    <span>Players</span>
+                    <span>></span>
+                </div>
+            </div>
+            
+            <div class="item">
+                <div class="checkbox-container">
+                    <span>Checkbox 1</span>
+                    <div class="checkbox" id="cb1" onclick="toggleCheck('cb1')"></div>
+                </div>
+            </div>
+            
+            <div class="item">
+                <div class="checkbox-container">
+                    <span>Checkbox 2</span>
+                    <div class="checkbox checked" id="cb2" onclick="toggleCheck('cb2')"></div>
+                </div>
+            </div>
+            
+            <div class="item">
+                <div class="slider-container">
+                    <div class="slider-header">
+                        <span>Slider 1</span>
+                        <span class="value" id="val1">100</span>
+                    </div>
+                    <div class="slider" onclick="updateSlider(event, 'val1', this)">
+                        <div class="slider-fill" style="width: 50%">
+                            <div class="slider-thumb"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCheck(id) {
+            var checkbox = document.getElementById(id);
+            checkbox.classList.toggle('checked');
+        }
+        
+        function updateSlider(event, valueId, slider) {
+            var rect = slider.getBoundingClientRect();
+            var x = event.clientX - rect.left;
+            var percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+            var value = Math.round((percent / 100) * 200);
+            
+            var fill = slider.querySelector('.slider-fill');
+            var valueElement = document.getElementById(valueId);
+            
+            fill.style.width = percent + '%';
+            valueElement.textContent = value;
+        }
+    </script>
+</body>
+</html>
